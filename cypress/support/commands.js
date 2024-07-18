@@ -8,6 +8,6 @@ Cypress.Commands.add('login', (user, pass) => {
         .clear().type(pass)
 
         cy.get('button[id="btnLogin"]')
-        .should('be.visible')
-        .click()
+        .should('be.visible').and('be.enabled')
+        .click();
 })
