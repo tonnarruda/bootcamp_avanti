@@ -11,7 +11,6 @@ jobs:
       - name: Running Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-        #   env: email=${{ secrets.EMAIL }},password=${{ secrets.PASSWORD }}
           run: npx cypress run
 
       - name: Uploading files in case of failure
