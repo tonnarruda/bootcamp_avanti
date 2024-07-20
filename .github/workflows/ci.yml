@@ -12,7 +12,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           run: npx cypress run
-        continue-on-error: true
 
       - name: Uploading files in case of failure
         uses: actions/upload-artifact@v4
