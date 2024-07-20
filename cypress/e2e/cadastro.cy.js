@@ -79,7 +79,7 @@ describe('Cadastro', () => {
     cy.get(".errorLabel").should("be.visible");
     cy.contains("O campo senha deve ter pelo menos 6 dígitos").should("be.visible");
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
-  });J
+  });
 
   it('[BUG] CT019 - Tentativa de Cadastro com campos vazios', () => {
     cy.cadastro(null, null, null);
