@@ -8,6 +8,9 @@ jobs:
       - name: Copying the Project
         uses: actions/checkout@v4
 
+      - name: Install Faker
+        run: npm install @faker-js/faker --save-dev
+
       - name: Running Cypress Tests
         uses: cypress-io/github-action@v6
         with:
