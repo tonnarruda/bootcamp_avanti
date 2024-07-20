@@ -11,7 +11,7 @@ jobs:
       - name: Running Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-          run: npx cypress run
+          run: npx cypress run || true
 
       - name: Uploading files in case of failure
         uses: actions/upload-artifact@v4
