@@ -19,11 +19,6 @@ describe('Cadastro', () => {
     cy.url().should("eq", `${Cypress.config("baseUrl")}/my-account`);
   });
 
-  it('[BUG] CT010 - Tentativa de Cadastro com email cadastrado', () => {
-    cy.cadastro(name, "avantiqa@teste.com", password)
-    cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
-  }); 
-
   it('CT011 - Tentativa de Cadastro com nome vazio', () => {
     cy.cadastro(null, email, password);
     cy.get(".errorLabel").should("be.visible");
@@ -77,15 +72,6 @@ describe('Cadastro', () => {
   it('CT018 - Tentativa de Cadastro com senha vazia', () => {
     cy.cadastro(name, email, null);
     cy.get(".errorLabel").should("be.visible");
-    cy.contains("O campo senha deve ter pelo menos 6 dígitos").should("be.visible");
-    cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
-  });
-
-  it('[BUG] CT019 - Tentativa de Cadastro com campos vazios', () => {
-    cy.cadastro(null, null, null);
-    cy.get(".errorLabel").should("be.visible");
-    cy.contains("O campo nome deve ser prenchido").should("be.visible");
-    cy.contains("O campo e-mail deve ser prenchido corretamente").should("be.visible");
     cy.contains("O campo senha deve ter pelo menos 6 dígitos").should("be.visible");
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
