@@ -13,8 +13,13 @@ describe("Login Tests", () => {
     cy.url().should("eq", `${Cypress.config("baseUrl")}/my-account`);
   });
 
-  it("Tentativa de Login sem sucesso", () => {
+  it("Tentativa de Login com email inválido", () => {
     cy.login("email", "P@ssw0rd!");
     cy.contains("E-mail inválido").should("be.visible");
+  });
+
+  it("Tentativa de Login com senha inválida", () => {
+    cy.login(Cypress.env('email'), "111!");
+    cy.contains("Senha inválida.").should("be.visible");
   });
 });
