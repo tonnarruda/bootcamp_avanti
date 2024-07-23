@@ -3,6 +3,8 @@ import {fakerPT_BR as faker} from '@faker-js/faker';
 const name = faker.person.fullName()
 const email = faker.internet.email()
 const password = faker.internet.password(6);
+const emailMsg = "O campo e-mail deve ser prenchido corretamente";
+const passwordMsg = "O campo senha deve ter pelo menos 6 dígitos";
 
 describe('Cadastro', () => {
   beforeEach(() => {
@@ -21,43 +23,37 @@ describe('Cadastro', () => {
 
   it('CT011 - Tentativa de Cadastro com nome vazio', () => {
     cy.cadastro(null, email, password);
-    cy.get(".errorLabel").should("be.visible");
-    cy.contains("O campo nome deve ser prenchido").should("be.visible");
+    cy.get(".errorLabel").should("be.visible").and("have.text", "O campo nome deve ser prenchido");
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   }); 
 
   it('CT012 - Tentativa de Cadastro com e-mail inválido', () => {
     cy.cadastro(name, "teste@teste", password);
-    cy.get(".errorLabel").should("be.visible");
-    cy.contains("O campo e-mail deve ser prenchido corretamente").should("be.visible");
+    cy.get(".errorLabel").should("be.visible").and("have.text", emailMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   }); 
 
   it('CT013 - Tentativa de Cadastro com e-mail vazio', () => {
     cy.cadastro(name, null, password);
-    cy.get(".errorLabel").should("be.visible");
-    cy.contains("O campo e-mail deve ser prenchido corretamente").should("be.visible");
+    cy.get(".errorLabel").should("be.visible").and("have.text", emailMsg)
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 
   it('CT014 - Tentativa de Cadastro com e-mail com números', () => {
     cy.cadastro(name, "32143151", password);
-    cy.get(".errorLabel").should("be.visible");
-    cy.contains("O campo e-mail deve ser prenchido corretamente").should("be.visible");
+    cy.get(".errorLabel").should("be.visible").and("have.text", emailMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 
   it('CT015 - Tentativa de Cadastro com e-mail com caracter especial', () => {
     cy.cadastro(name, "!#@!#@!$@!$", password);
-    cy.get(".errorLabel").should("be.visible");
-    cy.contains("O campo e-mail deve ser prenchido corretamente").should("be.visible");
+    cy.get(".errorLabel").should("be.visible").and("have.text", emailMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 
   it('CT016 - Tentativa de Cadastro com senha com 5 caracteres', () => {
     cy.cadastro(name, email, "tes12");
-    cy.get(".errorLabel").should("be.visible");
-    cy.contains("O campo senha deve ter pelo menos 6 dígitos").should("be.visible");
+    cy.get(".errorLabel").should("be.visible").and("have.text", passwordMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 
@@ -71,8 +67,7 @@ describe('Cadastro', () => {
 
   it('CT018 - Tentativa de Cadastro com senha vazia', () => {
     cy.cadastro(name, email, null);
-    cy.get(".errorLabel").should("be.visible");
-    cy.contains("O campo senha deve ter pelo menos 6 dígitos").should("be.visible");
+    cy.get(".errorLabel").should("be.visible").and("have.text", passwordMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 })
