@@ -35,3 +35,9 @@ Cypress.Commands.add('cadastro', (name, email, pass) => {
         .should('be.visible').and('be.enabled')
         .click();
 });
+
+Cypress.Commands.add("validaMsgErro", (msg) => {
+  cy.get(".errorLabel")
+    .should("be.visible")
+    .and("have.text", msg);
+})

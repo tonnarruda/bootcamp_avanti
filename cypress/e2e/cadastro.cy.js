@@ -29,31 +29,31 @@ describe('Cadastro', () => {
 
   it('CT012 - Tentativa de Cadastro com e-mail inválido', () => {
     cy.cadastro(name, "teste@teste", password);
-    cy.get(".errorLabel").should("be.visible").and("have.text", emailMsg);
+    cy.validaMsgErro(emailMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   }); 
 
   it('CT013 - Tentativa de Cadastro com e-mail vazio', () => {
     cy.cadastro(name, null, password);
-    cy.get(".errorLabel").should("be.visible").and("have.text", emailMsg)
+    cy.validaMsgErro(emailMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 
   it('CT014 - Tentativa de Cadastro com e-mail com números', () => {
     cy.cadastro(name, "32143151", password);
-    cy.get(".errorLabel").should("be.visible").and("have.text", emailMsg);
+    cy.validaMsgErro(emailMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 
   it('CT015 - Tentativa de Cadastro com e-mail com caracter especial', () => {
     cy.cadastro(name, "!#@!#@!$@!$", password);
-    cy.get(".errorLabel").should("be.visible").and("have.text", emailMsg);
+    cy.validaMsgErro(emailMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 
   it('CT016 - Tentativa de Cadastro com senha com 5 caracteres', () => {
     cy.cadastro(name, email, "tes12");
-    cy.get(".errorLabel").should("be.visible").and("have.text", passwordMsg);
+    cy.validaMsgErro(passwordMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 
@@ -67,7 +67,7 @@ describe('Cadastro', () => {
 
   it('CT018 - Tentativa de Cadastro com senha vazia', () => {
     cy.cadastro(name, email, null);
-    cy.get(".errorLabel").should("be.visible").and("have.text", passwordMsg);
+    cy.validaMsgErro(passwordMsg);
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 })
