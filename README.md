@@ -6,3 +6,14 @@ Para instalar todas as dependências do projeto, execute o seguinte comando no d
 
 ```sh
 npm install
+```
+
+## Executando os testes
+```sh
+npx cypress open
+```
+
+## Executando os teste em modo headless
+```sh
+npx cypress run
+```
