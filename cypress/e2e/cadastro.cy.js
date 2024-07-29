@@ -11,7 +11,7 @@ describe('Cadastro', () => {
     cy.url().should("eq", `${Cypress.config("baseUrl")}/register`);
   });
 
-  it('CT009 - Tentativa de Cadastro com sucesso', () => {
+  it.only('CT009 - Tentativa de Cadastro com sucesso', () => {
     cy.cadastro(name, email, password);
     cy.get("#swal2-title").should("be.visible");
     cy.contains("Cadastro realizado!").should("be.visible");
