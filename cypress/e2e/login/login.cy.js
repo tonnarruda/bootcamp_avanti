@@ -1,4 +1,5 @@
 import '../../page/loginPage/loginPage'
+import '../../page/dashboardPage/dashboardPage'
 
 const emailInvalid = "E-mail inválido.";
 const passwordInvalid = "Senha inválida.";
@@ -15,10 +16,7 @@ describe("Login Tests", () => {
     cy.typePassword(Cypress.env('password'));
     cy.clickLogin();
 
-    cy.get(".swal2-popup").should("be.visible");
-    cy.contains("Login realizado").should("be.visible");
-    cy.contains("OK").should("be.visible").click();
-    cy.url().should("eq", `${Cypress.config("baseUrl")}/my-account`);
+    cy.validateLogin()
   });
 
   it("CT013 - Login com email inválido", () => {
