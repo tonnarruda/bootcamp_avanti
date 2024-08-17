@@ -17,10 +17,10 @@ describe("Carrinho de compras test", () => {
         cy.AddToCart()
         cy.ValidateMsg()
     }); 
-    it.skip('CT031 - Adicionando produtos no carrinho e checando valores', () => {
+    it('CT031 - Adicionando produtos no carrinho e checando valores', () => {
       cy.MouseOver()
-      cy.ValidateMsg()
-
+      //cy.ValidateMsg()
+      cy.ValidacaoProdutos()
     });
     it('CT032-Retirando produtos no carrinho', () => {
       cy.ClickCarrinho()
