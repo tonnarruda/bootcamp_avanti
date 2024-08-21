@@ -12,44 +12,42 @@ describe("Login Tests", () => {
   });
 
   it("CT012 - Login com sucesso", () => {
-    cy.typeEmail(Cypress.env('email'));
-    cy.typePassword(Cypress.env('password'));
+    cy.login(Cypress.env('email'), Cypress.env('password'))
     cy.clickLogin();
 
     cy.validateLogin()
   });
 
   it("CT013 - Login com email inválido", () => {
-    cy.typeEmail("email");
-    cy.typePassword(Cypress.env('password'));
+    cy.login("email", Cypress.env('password'));
     cy.clickLogin();
 
     cy.validateMsgError(emailInvalid);
   });
 
   it("CT014 - Login com senha inválida", () => {
-    cy.typeEmail(Cypress.env('email'));
-    cy.typePassword("111!");
+    cy.login(Cypress.env('email'), "111!");
     cy.clickLogin();
 
     cy.validateMsgError(passwordInvalid);
   });
 
   it("CT015 - Login com e-mail vazio", () => {
-    cy.typePassword(Cypress.env('password'));
+    cy.login(null, Cypress.env('password'));
     cy.clickLogin();
 
     cy.validateMsgError(emailInvalid);
   });
 
   it("CT016 - Login com senha vazia", () => {
-    cy.typeEmail(Cypress.env('email'));
+    cy.login(Cypress.env('email'), null);
     cy.clickLogin();
 
     cy.validateMsgError(passwordInvalid);
   });
 
   it("CT017 - Login com e-mail e senha vazios", () => {
+    cy.login(null, null);
     cy.clickLogin();
 
     cy.validateMsgError(emailInvalid);

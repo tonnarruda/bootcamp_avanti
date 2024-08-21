@@ -1,9 +1,14 @@
-Cypress.Commands.add('typeEmail', (email) =>{
-    cy.get('input[id = "user"]').type(email);
-})
-
-Cypress.Commands.add('typePassword', (password) =>{
-    cy.get('input[type="password"]').type(password);
+Cypress.Commands.add('login', (email, senha) =>{
+    if (email !== null) {
+        cy.get('input[id = "user"]')
+            .should('be.visible')
+            .type(email, {log: false})
+        }
+        if (senha !== null) {
+        cy.get('input[type="password"]')
+            .should('be.visible')
+            .type(senha, {log: false})
+        }
 })
 
 Cypress.Commands.add('clickLogin', () =>{
