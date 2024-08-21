@@ -23,5 +23,5 @@ Cypress.Commands.add('validateMenuDashboard', (msg1, msg2, msg3) =>{
 })
 
 Cypress.Commands.add('validateMenuPrivacyPolicy', (msg) =>{
-    cy.get('h3').eq(0).should("be.visible").and('have.text', "Get In Touch")
+    cy.get('h3').eq(0).should("be.visible").and('have.text', msg)
 })
