@@ -19,8 +19,8 @@ describe("Carrinho de compras test", () => {
     }); 
 
     it('CT031 - Adicionando produtos no carrinho e checando valores', () => {
-      cy.MouseOver()
-      cy.Validate()
+      cy.visit('/cart');
+      cy.ValidacaoProdutos()
     });
 
     it('CT032-Retirando produtos no carrinho', () => {
@@ -31,6 +31,6 @@ describe("Carrinho de compras test", () => {
     it('CT033- Adicionando produtos no carrinho, após detalhamento do produto.', () => {
         cy.MouseOver()
         cy.Detalhamento()
-        cy.ValidateMsg()
+        cy.ValidateMsg('Success!')
     });
 });
